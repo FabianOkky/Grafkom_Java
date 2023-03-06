@@ -12,15 +12,15 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryStack.stackPush;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
+// untuk atur layar
 public class Window {
 
     private long window;
     private boolean open=  true;
     private int width, height;
     private String title;
+
     private MouseInput mouseInput;
-
-
     public Window(int width, int height, String title){
         this.width = width;
         this.height = height;
@@ -66,6 +66,7 @@ public class Window {
         if ( window == NULL )
             throw new RuntimeException("Failed to create the GLFW window");
 
+        // ini untuk keyboard
         // Setup a key callback. It will be called every time a key is pressed, repeated or released.
         glfwSetKeyCallback(window, (window, key, scancode, action, mods) -> {
             if ( key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE )
@@ -115,7 +116,6 @@ public class Window {
             open = false;
 
         mouseInput.input();
-
     }
 
     public void cleanup(){
@@ -133,4 +133,3 @@ public class Window {
     }
 
 }
-

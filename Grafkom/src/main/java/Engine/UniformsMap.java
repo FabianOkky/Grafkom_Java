@@ -7,6 +7,7 @@ import java.util.*;
 
 import static org.lwjgl.opengl.GL20.*;
 
+//buat komunikasi sama shaderprogram
 public class UniformsMap {
 
     private int programId;

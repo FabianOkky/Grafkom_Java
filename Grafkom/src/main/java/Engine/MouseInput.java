@@ -13,8 +13,9 @@ public class MouseInput {
     private boolean leftButtonPressed;
     private Vector2f previousPos;
     private boolean rightButtonPressed;
-    private boolean leftButtonRelease;
-    private boolean rightButtonRelease;
+
+    private boolean leftButtonReleased;
+    private boolean rightButtonReleased;
 
     public MouseInput(long windowHandle) {
         previousPos = new Vector2f(-1, -1);
@@ -23,29 +24,30 @@ public class MouseInput {
         displVec = new Vector2f();
         leftButtonPressed = false;
         rightButtonPressed = false;
+        leftButtonReleased = false;
+        rightButtonReleased = false;
         inWindow = false;
 
+        // yang perlu diperhatiin yang tiga ini untuk mouse inputnya
+        // set cursor ini tiap kali pencet di layar dia deteksi koordinatnya
         glfwSetCursorPosCallback(windowHandle, (handle, xpos, ypos) -> {
             currentPos.x = (float) xpos;
             currentPos.y = (float) ypos;
         });
+        // setiap kali masuk ke window ini yg dipanggil
         glfwSetCursorEnterCallback(windowHandle, (handle, entered) -> inWindow = entered);
         glfwSetScrollCallback(windowHandle, (handle, xoffset, yoffset)->{
             scroll.x = (float)xoffset;
             scroll.y = (float)yoffset;
         });
+        // ini untuk dideteksi yang diklik yg mana (right click, left click, release dll)
+        // yang dibuatin yg press
         glfwSetMouseButtonCallback(windowHandle, (handle, button, action, mode) -> {
             leftButtonPressed = button == GLFW_MOUSE_BUTTON_1 && action == GLFW_PRESS;
             rightButtonPressed = button == GLFW_MOUSE_BUTTON_2 && action == GLFW_PRESS;
-            leftButtonRelease = button == GLFW_MOUSE_BUTTON_1 && action == GLFW_RELEASE;
-            rightButtonRelease = button == GLFW_MOUSE_BUTTON_2 && action == GLFW_RELEASE;
-
+            leftButtonReleased = button == GLFW_MOUSE_BUTTON_1 && action == GLFW_RELEASE;
+            rightButtonReleased = button == GLFW_MOUSE_BUTTON_2 && action == GLFW_RELEASE;
         });
-
-//        glfwSetMouseButtonCallback(windowHandle, (handle, button, action, mode) -> {
-//            leftButtonRelease = button == GLFW_MOUSE_BUTTON_1 && action == GLFW_RELEASE;
-//            rightButtonRelease = button == GLFW_MOUSE_BUTTON_2 && action == GLFW_RELEASE;
-//        });
     }
 
     public Vector2f getCurrentPos() {
@@ -87,11 +89,6 @@ public class MouseInput {
         return rightButtonPressed;
     }
 
-    public boolean isleftButtonRelease(){
-        return leftButtonRelease;
-    }
-    public boolean isRightButtonRelease(){
-        return rightButtonRelease;
-    }
-
+    public boolean isLeftButtonReleased(){return leftButtonReleased;}
+    public boolean isRightButtonReleased(){return rightButtonReleased;}
 }

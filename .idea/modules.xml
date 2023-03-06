@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Grafkom/Grafkom_13_Feb_2023.iml" filepath="$PROJECT_DIR$/Grafkom/Grafkom_13_Feb_2023.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Grafkom_Java.iml" filepath="$PROJECT_DIR$/.idea/Grafkom_Java.iml" />
+    </modules>
+  </component>
+</project>
